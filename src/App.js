@@ -1,44 +1,21 @@
-import { useState } from 'react';
-import './App.css';
-import ToDoList from './components/ToDoList';
+import React from "react";
+import Main from "./components/Main";
+import Signin from "./components/Signin";
+import MovieDetail from "./components/MovieDetail";
+import { Route, Routes } from "react-router-dom";
 function App() {
 
-  const [inputList, setInputList] = useState("");
-  const [Items, setItems] = useState([]);
-
-  const itemEvent = (event) => {
-    setInputList(event.target.value);
-  }
-
-  const listOfItems = () => {
-     setItems((oldItems) => {
-      return [...oldItems, inputList];
-     } );
-
-     setInputList('');
-  };
-
-  return (<>
-    <div className="main_div">
-      <div className="center_div" >
-        <br />
-        <h1>ToDo List</h1>
-        <br />
-        <input type='text' placeholder='Add  a Items' onChange={itemEvent} value={inputList} />
-        <button className='newBtn' onClick={listOfItems} > + </button>
-        <ol>
-    {  Items.map((ItemVal)=> {
-        return <ToDoList  
-          text = {ItemVal}
-         />
-      })
-    }
-
-        </ol>
+  return (
+    <>
+      <div>
+      <Routes>
+        <Route path="/" element={<Main/>}/>
+        <Route path="/signin" element={<Signin/>}/>
+        <Route path="/moviedetail" element={<MovieDetail/>}/>
+      </Routes>
+    
       </div>
-
-    </div>
-  </>
+    </>
   )
 }
 
